@@ -19,8 +19,8 @@
         :compiler
         {
           :output-to "resources/public/js/cljs.js"
-          :optimizations :advanced
-;;          :pretty-print true
+          :optimizations :simple
+          :pretty-print true
         }
         :jar true
       }
