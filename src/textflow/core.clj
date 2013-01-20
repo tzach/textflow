@@ -32,7 +32,7 @@
     [:textarea {:type "text" :cols "30" :rows "15" :id "intext"}]
     [:p]
     [:textarea {:type "text" :cols "60" :rows "20" :id "outtext"}]
-    (include-js "http://code.jquery.com/jquery-1.8.2.min.js")
+    (include-js "js/jquery-1.8.2.min.js")
     (include-js "js/cljs.js")
     [:p]
     [:p]
