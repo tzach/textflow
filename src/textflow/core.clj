@@ -11,13 +11,12 @@
             [ring.adapter.jetty :as ring-adpt]
             ))
 
-(def *css* [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
-(def *about*
+(def ^:dynamic *css* [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
+(def ^:dynamic *about*
      (html
       [:p] "tip: make sure to paste with Courier New or Consolas font, to keep spacing correct"
       [:hr]
-      [:p"This is a toy service which come with NO warranties what so ever."]
-      [:p"(str \"tzach.\"  \"livyatan\" \"@gmail.com\")"]
+      [:p (link-to "https://github.com/tzach/textflow" "source")]
       [:p "v.2.0"]
       ))
 
@@ -52,10 +51,8 @@
     (resources/wrap-resource "public")))
 
 (defn start [port]
-  (ring-adpt/run-jetty app-routes {:port 8080 :join? false}))
+  (ring-adpt/run-jetty #'app {:port 8080 :join? false}))
 
 (defn -main []
   (let [port (Integer. (System/getenv "PORT"))]
     (start port)))
-
-    
