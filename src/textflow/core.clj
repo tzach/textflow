@@ -53,6 +53,5 @@
 (defn start [port]
   (ring-adpt/run-jetty #'app {:port 8080 :join? false}))
 
-(defn -main []
-  (let [port (Integer. (System/getenv "PORT"))]
-    (start port)))
+(defn -main [port]
+  (ring-adpt/run-jetty app {:port (Integer. port)}))
