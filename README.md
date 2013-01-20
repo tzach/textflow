@@ -1,13 +1,14 @@
 # textflow
 
-A Clojure library designed to ... well, that part is up to you.
+Text Flow Online is a small utility which allow you to create simple text like call flows (sequence diagrams) on the fly, much like call flows in RFCs. 
+Its implemented using: clojure and clojurescript
+
 
 ## Usage
 
-FIXME
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Tzach Livyatan
 
 Distributed under the Eclipse Public License, the same as Clojure.
