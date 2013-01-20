@@ -5,7 +5,8 @@ Its implemented using: clojure and clojurescript
 
 
 ## Usage
-
+See it in action
+http://textflow.herokuapp.com/
 
 ## License
 
