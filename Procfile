@@ -1,1 +1,1 @@
-web: lein trampoline run -m textflow.core
+web: lein trampoline run -m textflow.core $PORT
