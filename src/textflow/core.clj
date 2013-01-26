@@ -11,7 +11,9 @@
             [ring.adapter.jetty :as ring-adpt]
             ))
 
-(def ^:dynamic *css* [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
+(def ^:dynamic *bootstrap-css* [:link { :href "stylesheets/bootstrap.css" :rel "stylesheet" :media "screen"}])
+(def ^:dynamic *my-css*  [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
+
 (def ^:dynamic *about*
      (html
       [:p] "tip: make sure to paste with Courier New or Consolas font, to keep spacing correct"
@@ -23,17 +25,19 @@
 (defn main-page []
   (html5
    [:head
-    *css*
+    *bootstrap-css*
+    *my-css*
     [:h1 "Online generation of RFC like call flows"]
     [:h3 "a.k.a sequence diagrams"]]
    [:body
     [:p "update the text part"]
     [:p]
-    [:textarea {:type "text" :cols "30" :rows "15" :id "intext"}]
+    [:textarea {:type "text" :cols "30" :rows "15" :class "intext" :id "intext"}]
     [:p]
-    [:textarea {:type "text" :cols "60" :rows "20" :id "outtext"}]
+    [:textarea {:type "text" :class "outtext" :id "outtext"}]
     (include-js "http://code.jquery.com/jquery-1.8.2.min.js")
     (include-js "js/cljs.js")
+    (include-js "js/bootstrap.js")
     [:p]
     [:p]
     *about*
@@ -53,5 +57,8 @@
 (defn start [port]
   (ring-adpt/run-jetty #'app {:port 8080 :join? false}))
 
-(defn -main [port]
-  (ring-adpt/run-jetty app {:port (Integer. port)}))
+(defn -main ([port]
+                (ring-adpt/run-jetty app {:port (Integer. port)}))
+  ([] (-main 8080)))
+
+

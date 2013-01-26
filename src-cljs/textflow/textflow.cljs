@@ -108,13 +108,14 @@
         (map second msgs) 
         (map #(safe-nth % 2) msgs)))))
 
-(defn write-flow 
+(defn write-flow
   ([actors msgs]
-     (str
-      (println-str (trimm (write-actors actors) actors))
-      (reduce str
-	      (for [msg msgs]
-		(println-str (apply write-msg (cons actors msg)))))))
+   (let [actor-str (println-str (trimm (write-actors actors) actors))
+         messages (for [msg msgs]
+                    (println-str (apply write-msg (cons actors msg))))
+         messages-str (reduce str messages)
+         s (str actor-str messages-str)]
+     [s (count actor-str) (count messages)]))
   ([msgs] (write-flow (extract-actors msgs) msgs)))
 
 (defn write-msgs [ & msgs]

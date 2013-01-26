@@ -19,10 +19,11 @@
         :compiler
         {
           :output-to "resources/public/js/cljs.js"
-         ;;          :optimizations :simple
-         ;;          :pretty-print true
-         :optimizations :advanced
-         :externs ["resources/public/js/jquery-1.8.2.min.js"]
+         :optimizations :whitespace
+         :pretty-print true
+;         :optimizations :advanced
+         :externs ["resources/public/js/jquery-1.8.2.min.js"
+                   "resources/public/js/bootstrap.min.js"]
         }
         :jar true
       }
