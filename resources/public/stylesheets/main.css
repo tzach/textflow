@@ -6,6 +6,7 @@ body {
 
 .intext  {
     font-family: Consolas, Courier New;
+    min-width:300px;
     margin-left: 10px;
 }
 

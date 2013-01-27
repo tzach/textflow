@@ -23889,7 +23889,9 @@ textflow.client.update_flow = function update_flow() {
     var rows = cljs.core.nth.call(null, vec__2869, 2, null);
     jayq.core.val.call(null, textflow.client.$outtext, text);
     jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'width", [cljs.core.str(15 + len), cljs.core.str("ex")].join(""));
-    jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'height", [cljs.core.str(4 * (3 + rows)), cljs.core.str("ex")].join(""));
+    var h_2870 = [cljs.core.str(cljs.core.int$.call(null, 3.5 * (3 + rows))), cljs.core.str("ex")].join("");
+    jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'height", h_2870);
+    jayq.core.css.call(null, textflow.client.$intext, "\ufdd0'height", h_2870);
     jayq.core.css.call(null, textflow.client.$validsyntax, "\ufdd0'display", "block");
     return jayq.core.css.call(null, textflow.client.$syntaxerror, "\ufdd0'display", "none")
   }else {

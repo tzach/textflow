@@ -14,7 +14,9 @@
     (do
       (val $outtext text)
       (css $outtext :width (str (+ 15 len) "ex"))
-      (css $outtext :height (str (* 4 (+ 3 rows)) "ex"))
+      (let [h (str (int (* 3.5 (+ 3 rows))) "ex")]
+        (css $outtext :height h)
+        (css $intext  :height h))
       (css $validsyntax :display "block")
       (css $syntaxerror :display "none"))
     (do

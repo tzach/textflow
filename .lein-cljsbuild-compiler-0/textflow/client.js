@@ -18,7 +18,9 @@ var len = cljs.core.nth.call(null,vec__2869,1,null);
 var rows = cljs.core.nth.call(null,vec__2869,2,null);
 jayq.core.val.call(null,textflow.client.$outtext,text);
 jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'width",[cljs.core.str((15 + len)),cljs.core.str("ex")].join(''));
-jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'height",[cljs.core.str((4 * (3 + rows))),cljs.core.str("ex")].join(''));
+var h_2870 = [cljs.core.str(cljs.core.int$.call(null,(3.5 * (3 + rows)))),cljs.core.str("ex")].join('');
+jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'height",h_2870);
+jayq.core.css.call(null,textflow.client.$intext,"\uFDD0'height",h_2870);
 jayq.core.css.call(null,textflow.client.$validsyntax,"\uFDD0'display","block");
 return jayq.core.css.call(null,textflow.client.$syntaxerror,"\uFDD0'display","none");
 } else
