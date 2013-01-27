@@ -126,14 +126,17 @@
   "parse request, return error if fail"
   (try
     (write-flow (rec-to-strs (reader/read-string req)))
-    (catch js/Object e (str "Fail to generate flow\n" e))))
+    (catch js/Object e nil)))
+;;    (catch js/Object e (str "Fail to generate flow\n" e))))
 
 
 (def *example*
      (str
-      "[[hi Tzach Amnon]\n"
+      "[\n"
+      "[hi Tzach Amnon]\n"
       "[hello Amnon Shay]\n"
       "[\"New version?\" Shay Tzach]\n"
       "[]\n"
       "[\"ClojureScript!\" Tzach Shay]\n"
-      "[Cool Amnon Tzach]]\n"))
+      "[Cool Amnon Tzach]\n"
+      "]"))

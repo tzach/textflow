@@ -22185,19 +22185,19 @@ textflow.logic.indexed = function indexed(s) {
 };
 textflow.logic.get_pos = function get_pos(elm, coll) {
   return cljs.core.first.call(null, function() {
-    var iter__2495__auto__ = function iter__2874(s__2875) {
+    var iter__4346__auto__ = function iter__4723(s__4724) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__2875__$1 = s__2875;
+        var s__4724__$1 = s__4724;
         while(true) {
-          if(cljs.core.seq.call(null, s__2875__$1)) {
-            var vec__2877 = cljs.core.first.call(null, s__2875__$1);
-            var idx = cljs.core.nth.call(null, vec__2877, 0, null);
-            var elt = cljs.core.nth.call(null, vec__2877, 1, null);
+          if(cljs.core.seq.call(null, s__4724__$1)) {
+            var vec__4726 = cljs.core.first.call(null, s__4724__$1);
+            var idx = cljs.core.nth.call(null, vec__4726, 0, null);
+            var elt = cljs.core.nth.call(null, vec__4726, 1, null);
             if(cljs.core._EQ_.call(null, elt, elm)) {
-              return cljs.core.cons.call(null, idx, iter__2874.call(null, cljs.core.rest.call(null, s__2875__$1)))
+              return cljs.core.cons.call(null, idx, iter__4723.call(null, cljs.core.rest.call(null, s__4724__$1)))
             }else {
-              var G__2878 = cljs.core.rest.call(null, s__2875__$1);
-              s__2875__$1 = G__2878;
+              var G__4727 = cljs.core.rest.call(null, s__4724__$1);
+              s__4724__$1 = G__4727;
               continue
             }
           }else {
@@ -22207,7 +22207,7 @@ textflow.logic.get_pos = function get_pos(elm, coll) {
         }
       }, null)
     };
-    return iter__2495__auto__.call(null, textflow.logic.indexed.call(null, coll))
+    return iter__4346__auto__.call(null, textflow.logic.indexed.call(null, coll))
   }())
 };
 textflow.logic.mid = function mid(len) {
@@ -22225,13 +22225,13 @@ textflow.logic.abs = function abs(x) {
 };
 textflow.logic.rec_to_strs = function rec_to_strs(f) {
   return cljs.core.vec.call(null, function() {
-    var iter__2495__auto__ = function iter__2881(s__2882) {
+    var iter__4346__auto__ = function iter__4730(s__4731) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__2882__$1 = s__2882;
+        var s__4731__$1 = s__4731;
         while(true) {
-          if(cljs.core.seq.call(null, s__2882__$1)) {
-            var c = cljs.core.first.call(null, s__2882__$1);
-            return cljs.core.cons.call(null, cljs.core.coll_QMARK_.call(null, c) ? cljs.core.vec.call(null, rec_to_strs.call(null, c)) : [cljs.core.str(c)].join(""), iter__2881.call(null, cljs.core.rest.call(null, s__2882__$1)))
+          if(cljs.core.seq.call(null, s__4731__$1)) {
+            var c = cljs.core.first.call(null, s__4731__$1);
+            return cljs.core.cons.call(null, cljs.core.coll_QMARK_.call(null, c) ? cljs.core.vec.call(null, rec_to_strs.call(null, c)) : [cljs.core.str(c)].join(""), iter__4730.call(null, cljs.core.rest.call(null, s__4731__$1)))
           }else {
             return null
           }
@@ -22239,7 +22239,7 @@ textflow.logic.rec_to_strs = function rec_to_strs(f) {
         }
       }, null)
     };
-    return iter__2495__auto__.call(null, f)
+    return iter__4346__auto__.call(null, f)
   }())
 };
 textflow.logic.tail_cons = function tail_cons(col, e) {
@@ -22255,13 +22255,13 @@ textflow.logic.safe_nth = function safe_nth(seq, num) {
 textflow.logic._STAR_space_len_STAR_ = 20;
 textflow.logic.fill_string = function fill_string(times, char$) {
   return cljs.core.apply.call(null, cljs.core.str, function() {
-    var iter__2495__auto__ = function iter__2885(s__2886) {
+    var iter__4346__auto__ = function iter__4734(s__4735) {
       return new cljs.core.LazySeq(null, false, function() {
-        var s__2886__$1 = s__2886;
+        var s__4735__$1 = s__4735;
         while(true) {
-          if(cljs.core.seq.call(null, s__2886__$1)) {
-            var _ = cljs.core.first.call(null, s__2886__$1);
-            return cljs.core.cons.call(null, char$, iter__2885.call(null, cljs.core.rest.call(null, s__2886__$1)))
+          if(cljs.core.seq.call(null, s__4735__$1)) {
+            var _ = cljs.core.first.call(null, s__4735__$1);
+            return cljs.core.cons.call(null, char$, iter__4734.call(null, cljs.core.rest.call(null, s__4735__$1)))
           }else {
             return null
           }
@@ -22269,7 +22269,7 @@ textflow.logic.fill_string = function fill_string(times, char$) {
         }
       }, null)
     };
-    return iter__2495__auto__.call(null, cljs.core.range.call(null, times))
+    return iter__4346__auto__.call(null, cljs.core.range.call(null, times))
   }())
 };
 textflow.logic.arrow_line = function arrow_line(len) {
@@ -22321,10 +22321,10 @@ textflow.logic.write_actors = function write_actors(actors) {
     if(cljs.core.empty_QMARK_.call(null, acs)) {
       return s
     }else {
-      var G__2887 = textflow.logic.rep_string.call(null, s, a, textflow.logic.pos_in_pic.call(null, a, actors) - textflow.logic.mid.call(null, cljs.core.count.call(null, a)));
-      var G__2888 = cljs.core.rest.call(null, acs);
-      s = G__2887;
-      acs = G__2888;
+      var G__4736 = textflow.logic.rep_string.call(null, s, a, textflow.logic.pos_in_pic.call(null, a, actors) - textflow.logic.mid.call(null, cljs.core.count.call(null, a)));
+      var G__4737 = cljs.core.rest.call(null, acs);
+      s = G__4736;
+      acs = G__4737;
       continue
     }
     break
@@ -22350,13 +22350,13 @@ textflow.logic.write_msg = function() {
       var len = textflow.logic.abs.call(null, f_pos - t_pos) - 1;
       var arrow = f_pos < t_pos ? textflow.logic.right_arrow.call(null, len) : textflow.logic.left_arrow.call(null, len);
       return[cljs.core.str(cljs.core.println_str.call(null, textflow.logic.trimm.call(null, textflow.logic.rep_string.call(null, textflow.logic.write_empty.call(null, actors), msg, text), actors))), cljs.core.str(textflow.logic.trimm.call(null, textflow.logic.rep_string.call(null, textflow.logic.write_empty.call(null, actors), arrow, start), actors))].join("")
-    }catch(e2892) {
-      if(cljs.core.instance_QMARK_.call(null, Object, e2892)) {
-        var e = e2892;
+    }catch(e4741) {
+      if(cljs.core.instance_QMARK_.call(null, Object, e4741)) {
+        var e = e4741;
         throw textflow.logic.err_msg.call(null, msg, clg, cld, e.getMessage());
       }else {
         if("\ufdd0'else") {
-          throw e2892;
+          throw e4741;
         }else {
           return null
         }
@@ -22377,10 +22377,10 @@ textflow.logic.write_msg = function() {
   return write_msg
 }();
 textflow.logic.extract_actors = function extract_actors(msgs) {
-  return cljs.core.filter.call(null, function(p1__2889_SHARP_) {
-    return!(p1__2889_SHARP_ == null)
-  }, cljs.core.distinct.call(null, cljs.core.concat.call(null, cljs.core.map.call(null, cljs.core.second, msgs), cljs.core.map.call(null, function(p1__2890_SHARP_) {
-    return textflow.logic.safe_nth.call(null, p1__2890_SHARP_, 2)
+  return cljs.core.filter.call(null, function(p1__4738_SHARP_) {
+    return!(p1__4738_SHARP_ == null)
+  }, cljs.core.distinct.call(null, cljs.core.concat.call(null, cljs.core.map.call(null, cljs.core.second, msgs), cljs.core.map.call(null, function(p1__4739_SHARP_) {
+    return textflow.logic.safe_nth.call(null, p1__4739_SHARP_, 2)
   }, msgs))))
 };
 textflow.logic.write_flow = function() {
@@ -22391,13 +22391,13 @@ textflow.logic.write_flow = function() {
   var write_flow__2 = function(actors, msgs) {
     var actor_str = cljs.core.println_str.call(null, textflow.logic.trimm.call(null, textflow.logic.write_actors.call(null, actors), actors));
     var messages = function() {
-      var iter__2495__auto__ = function iter__2895(s__2896) {
+      var iter__4346__auto__ = function iter__4744(s__4745) {
         return new cljs.core.LazySeq(null, false, function() {
-          var s__2896__$1 = s__2896;
+          var s__4745__$1 = s__4745;
           while(true) {
-            if(cljs.core.seq.call(null, s__2896__$1)) {
-              var msg = cljs.core.first.call(null, s__2896__$1);
-              return cljs.core.cons.call(null, cljs.core.println_str.call(null, cljs.core.apply.call(null, textflow.logic.write_msg, cljs.core.cons.call(null, actors, msg))), iter__2895.call(null, cljs.core.rest.call(null, s__2896__$1)))
+            if(cljs.core.seq.call(null, s__4745__$1)) {
+              var msg = cljs.core.first.call(null, s__4745__$1);
+              return cljs.core.cons.call(null, cljs.core.println_str.call(null, cljs.core.apply.call(null, textflow.logic.write_msg, cljs.core.cons.call(null, actors, msg))), iter__4744.call(null, cljs.core.rest.call(null, s__4745__$1)))
             }else {
               return null
             }
@@ -22405,7 +22405,7 @@ textflow.logic.write_flow = function() {
           }
         }, null)
       };
-      return iter__2495__auto__.call(null, msgs)
+      return iter__4346__auto__.call(null, msgs)
     }();
     var messages_str = cljs.core.reduce.call(null, cljs.core.str, messages);
     var s = [cljs.core.str(actor_str), cljs.core.str(messages_str)].join("");
@@ -22436,8 +22436,8 @@ textflow.logic.write_msgs = function() {
     return write_msgs__delegate.call(this, msgs)
   };
   write_msgs.cljs$lang$maxFixedArity = 0;
-  write_msgs.cljs$lang$applyTo = function(arglist__2897) {
-    var msgs = cljs.core.seq(arglist__2897);
+  write_msgs.cljs$lang$applyTo = function(arglist__4746) {
+    var msgs = cljs.core.seq(arglist__4746);
     return write_msgs__delegate(msgs)
   };
   write_msgs.cljs$lang$arity$variadic = write_msgs__delegate;
@@ -22446,20 +22446,20 @@ textflow.logic.write_msgs = function() {
 textflow.logic.write_or_err = function write_or_err(req) {
   try {
     return textflow.logic.write_flow.call(null, textflow.logic.rec_to_strs.call(null, cljs.reader.read_string.call(null, req)))
-  }catch(e2899) {
-    if(cljs.core.instance_QMARK_.call(null, Object, e2899)) {
-      var e = e2899;
-      return[cljs.core.str("Fail to generate flow\n"), cljs.core.str(e)].join("")
+  }catch(e4748) {
+    if(cljs.core.instance_QMARK_.call(null, Object, e4748)) {
+      var e = e4748;
+      return null
     }else {
       if("\ufdd0'else") {
-        throw e2899;
+        throw e4748;
       }else {
         return null
       }
     }
   }
 };
-textflow.logic._STAR_example_STAR_ = [cljs.core.str("[[hi Tzach Amnon]\n"), cljs.core.str("[hello Amnon Shay]\n"), cljs.core.str('["New version?" Shay Tzach]\n'), cljs.core.str("[]\n"), cljs.core.str('["ClojureScript!" Tzach Shay]\n'), cljs.core.str("[Cool Amnon Tzach]]\n")].join("");
+textflow.logic._STAR_example_STAR_ = [cljs.core.str("[\n"), cljs.core.str("[hi Tzach Amnon]\n"), cljs.core.str("[hello Amnon Shay]\n"), cljs.core.str('["New version?" Shay Tzach]\n'), cljs.core.str("[]\n"), cljs.core.str('["ClojureScript!" Tzach Shay]\n'), cljs.core.str("[Cool Amnon Tzach]\n"), cljs.core.str("]")].join("");
 goog.provide("clojure.string");
 goog.require("cljs.core");
 goog.require("goog.string.StringBuffer");
@@ -23876,15 +23876,32 @@ goog.require("textflow.logic");
 goog.require("jayq.core");
 textflow.client.$intext = jayq.core.$.call(null, "\ufdd0'#intext");
 textflow.client.$outtext = jayq.core.$.call(null, "\ufdd0'#outtext");
+textflow.client.$syntaxerror = jayq.core.$.call(null, "\ufdd0'#syntaxerror");
+textflow.client.$validsyntax = jayq.core.$.call(null, "\ufdd0'#validsyntax");
+textflow.client.$popedit = jayq.core.$.call(null, "\ufdd0'#popedit");
+textflow.client.$popview = jayq.core.$.call(null, "\ufdd0'#popview");
 textflow.client.update_flow = function update_flow() {
-  var vec__4744 = textflow.logic.write_or_err.call(null, jayq.core.val.call(null, textflow.client.$intext));
-  var text = cljs.core.nth.call(null, vec__4744, 0, null);
-  var len = cljs.core.nth.call(null, vec__4744, 1, null);
-  var rows = cljs.core.nth.call(null, vec__4744, 2, null);
-  jayq.core.val.call(null, textflow.client.$outtext, text);
-  jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'width", [cljs.core.str(15 + len), cljs.core.str("ex")].join(""));
-  return jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'height", [cljs.core.str(5 + 6 * rows), cljs.core.str("ex")].join(""))
+  var temp__3971__auto__ = textflow.logic.write_or_err.call(null, jayq.core.val.call(null, textflow.client.$intext));
+  if(cljs.core.truth_(temp__3971__auto__)) {
+    var vec__2869 = temp__3971__auto__;
+    var text = cljs.core.nth.call(null, vec__2869, 0, null);
+    var len = cljs.core.nth.call(null, vec__2869, 1, null);
+    var rows = cljs.core.nth.call(null, vec__2869, 2, null);
+    jayq.core.val.call(null, textflow.client.$outtext, text);
+    jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'width", [cljs.core.str(15 + len), cljs.core.str("ex")].join(""));
+    jayq.core.css.call(null, textflow.client.$outtext, "\ufdd0'height", [cljs.core.str(4 * (3 + rows)), cljs.core.str("ex")].join(""));
+    jayq.core.css.call(null, textflow.client.$validsyntax, "\ufdd0'display", "block");
+    return jayq.core.css.call(null, textflow.client.$syntaxerror, "\ufdd0'display", "none")
+  }else {
+    jayq.core.css.call(null, textflow.client.$validsyntax, "\ufdd0'display", "none");
+    return jayq.core.css.call(null, textflow.client.$syntaxerror, "\ufdd0'display", "block")
+  }
+};
+textflow.client.update_flow_and_clear_popups = function update_flow_and_clear_popups() {
+  jayq.core.css.call(null, textflow.client.$popedit, "\ufdd0'display", "none");
+  jayq.core.css.call(null, textflow.client.$popview, "\ufdd0'display", "none");
+  return textflow.client.update_flow.call(null)
 };
 jayq.core.val.call(null, textflow.client.$intext, textflow.logic._STAR_example_STAR_);
-jayq.core.bind.call(null, textflow.client.$intext, "input", textflow.client.update_flow);
+jayq.core.bind.call(null, textflow.client.$intext, "input", textflow.client.update_flow_and_clear_popups);
 textflow.client.update_flow.call(null);

@@ -4,15 +4,28 @@
 
 (def $intext ($ :#intext))
 (def $outtext ($ :#outtext))
+(def $syntaxerror ($ :#syntaxerror))
+(def $validsyntax ($ :#validsyntax))
+(def $popedit ($ :#popedit))
+(def $popview ($ :#popview))
 
 (defn update-flow []
-  (let [[text len rows] (tf/write-or-err (val $intext))]
+  (if-let [[text len rows] (tf/write-or-err (val $intext))]
     (do
       (val $outtext text)
       (css $outtext :width (str (+ 15 len) "ex"))
-      (css $outtext :height (str (+ 5 (* 6 rows)) "ex")))))
+      (css $outtext :height (str (* 4 (+ 3 rows)) "ex"))
+      (css $validsyntax :display "block")
+      (css $syntaxerror :display "none"))
+    (do
+      (css $validsyntax :display "none")
+      (css $syntaxerror :display "block"))))
 
+(defn update-flow-and-clear-popups []
+  (css $popedit :display "none")
+  (css $popview :display "none")
+  (update-flow))
 
 (val $intext tf/*example*)
-(bind $intext "input" update-flow)
+(bind $intext "input" update-flow-and-clear-popups)
 (update-flow)
