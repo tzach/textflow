@@ -14,13 +14,24 @@
   :hooks [leiningen.cljsbuild]
   :cljsbuild { 
               :builds {
-                       :main {
+                       ;; :main {
+                       ;;        :source-path "src-cljs"
+                       ;;        :compiler
+                       ;;        {
+                       ;;         :output-to "resources/public/js/cljs.js"
+                       ;;         :optimizations :whitespace
+                       ;;         :pretty-print true
+                       ;;         }
+                       ;;        }
+                       :prod {
                               :source-path "src-cljs"
                               :compiler
                               {
                                :output-to "resources/public/js/cljs.js"
-                               :optimizations :whitespace
-                               :pretty-print true
+                               :optimizations :advanced
+                               :pretty-print false
+                               :externs ["resources/public/js/jquery-1.8.2.min.js"
+                                         "resources/public/js/bootstrap.min.js"]
                                }
                               }
                        }
@@ -28,21 +39,7 @@
   :production {:misc "configuration"
                :offline true
                :mirrors {#"central|clojars"
-                         "http://s3pository.herokuapp.com/clojure"}
-               :cljsbuild {
-                           :builds {
-                                    :prod {
-                                           :source-path "src-cljs"
-                                           :compiler
-                                           {
-                                            :output-to "resources/public/js/cljs.js"
-                                            :optimizations :advanced
-                                            :pretty-print false
-                                            :externs ["resources/public/js/jquery-1.8.2.min.js"
-                                                      "resources/public/js/bootstrap.min.js"]
-                                            }
-                                           }}}}
-
+                         "http://s3pository.herokuapp.com/clojure"}}
   :main textflow.server)
 
 ;; lein trampoline cljsbuild repl-rhino
