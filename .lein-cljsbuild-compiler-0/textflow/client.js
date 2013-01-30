@@ -9,6 +9,7 @@ textflow.client.$syntaxerror = jayq.core.$.cljs$lang$arity$1("\uFDD0'#syntaxerro
 textflow.client.$validsyntax = jayq.core.$.cljs$lang$arity$1("\uFDD0'#validsyntax");
 textflow.client.$popedit = jayq.core.$.cljs$lang$arity$1("\uFDD0'#popedit");
 textflow.client.$popview = jayq.core.$.cljs$lang$arity$1("\uFDD0'#popview");
+textflow.client.$selectbtn = jayq.core.$.cljs$lang$arity$1("\uFDD0'#selectbtn");
 textflow.client.update_flow = (function update_flow(){
 var temp__3971__auto__ = (textflow.logic.write_or_err.cljs$lang$arity$1 ? textflow.logic.write_or_err.cljs$lang$arity$1(jayq.core.val.cljs$lang$arity$1(textflow.client.$intext)) : textflow.logic.write_or_err.call(null,jayq.core.val.cljs$lang$arity$1(textflow.client.$intext)));
 if(cljs.core.truth_(temp__3971__auto__))
@@ -33,6 +34,9 @@ jayq.core.css.cljs$lang$arity$3(textflow.client.$popedit,"\uFDD0'display","none"
 jayq.core.css.cljs$lang$arity$3(textflow.client.$popview,"\uFDD0'display","none");
 return textflow.client.update_flow();
 });
+jayq.core.bind(textflow.client.$selectbtn,"click",(function (){
+return textflow.client.$outtext.select();
+}));
 jayq.core.val.cljs$lang$arity$2(textflow.client.$intext,textflow.logic._STAR_example_STAR_);
 jayq.core.bind(textflow.client.$intext,"input",textflow.client.update_flow_and_clear_popups);
 textflow.client.update_flow();

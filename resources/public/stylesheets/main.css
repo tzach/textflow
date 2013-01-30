@@ -4,15 +4,25 @@ body {
 }
 
 
-.intext  {
-    font-family: Consolas, Courier New;
+#intext  {
     min-width:300px;
-    margin-left: 10px;
 }
 
-.outtext {
-    font-family: Consolas, Courier New;
+#outtext {
     line-height: 100%;
-    margin-left: 10px;
     min-width:400px;
+}
+
+#intext,
+#outtext {
+    font-family: Consolas, Courier New;
+}
+
+
+#outtext,
+#intext,
+#validsyntax,
+#syntaxerror,
+#select {
+    margin-left: 10px;
 }

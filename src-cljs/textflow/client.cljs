@@ -2,12 +2,15 @@
   (:use [jayq.core :only [$ delegate toggle val bind on attr css]])
   (:require [textflow.logic :as tf]))
 
+
+
 (def $intext ($ :#intext))
 (def $outtext ($ :#outtext))
 (def $syntaxerror ($ :#syntaxerror))
 (def $validsyntax ($ :#validsyntax))
 (def $popedit ($ :#popedit))
 (def $popview ($ :#popview))
+(def $selectbtn ($ :#selectbtn))
 
 (defn update-flow []
   (if-let [[text len rows] (tf/write-or-err (val $intext))]
@@ -28,6 +31,9 @@
   (css $popview :display "none")
   (update-flow))
 
+(bind $selectbtn "click" #(.select $outtext))
+
 (val $intext tf/*example*)
 (bind $intext "input" update-flow-and-clear-popups)
 (update-flow)
+
