@@ -54,8 +54,10 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 (def ^:dynamic *syntaxerror* (syntax "syntaxerror" "alert alert-error" "Syntax Error"))
 (def ^:dynamic *validsyntax* (syntax "validsyntax" "alert alert-success" "Valid Syntax"))
 
-(def ^:dynamic *select*
-  [:div#select.row [:div.span8 [:button#selectbtn.btn {:rel "tooltip" :title "use Ctrl+C to copy after select"} "Select"]]])
+(def ^:dynamic *buttons*
+  [:div#buttons.row [:div.span8
+                     [:button#selectbtn.btn {:rel "tooltip" :title "use Ctrl+C to copy after select"} "Select"]
+                     ]])
 
 (def ^:dynamic *menu*
           [:div {:class "navbar navbar-inverse navbar-fixed-top"}
@@ -99,7 +101,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
             [:div.span8
              [:textarea {:type "text" :class "outtext" :id "outtext" :readonly "true"}]
              *popview*
-             *select*
+             *buttons*
              ]]
            [:p][:p][:p][:hr]
            [:div.row

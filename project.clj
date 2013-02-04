@@ -14,26 +14,26 @@
   :hooks [leiningen.cljsbuild]
   :cljsbuild { 
               :builds {
-                       ;; :main {
-                       ;;        :source-path "src-cljs"
-                       ;;        :compiler
-                       ;;        {
-                       ;;         :output-to "resources/public/js/cljs.js"
-                       ;;         :optimizations :whitespace
-                       ;;         :pretty-print true
-                       ;;         }
-                       ;;        }
-                       :prod {
+                       :main {
                               :source-path "src-cljs"
                               :compiler
                               {
                                :output-to "resources/public/js/cljs.js"
-                               :optimizations :advanced
-                               :pretty-print false
-                               :externs ["resources/public/js/jquery-1.8.2.min.js"
-                                         "resources/public/js/bootstrap.min.js"]
+                               :optimizations :whitespace
+                               :pretty-print true
                                }
                               }
+                       ;; :prod {
+                       ;;        :source-path "src-cljs"
+                       ;;        :compiler
+                       ;;        {
+                       ;;         :output-to "resources/public/js/cljs.js"
+                       ;;         :optimizations :advanced
+                       ;;         :pretty-print false
+                       ;;         :externs ["resources/public/js/jquery-1.8.2.min.js"
+                       ;;                   "resources/public/js/bootstrap.min.js"]
+                       ;;         }
+                       ;;        }
                        }
               }
   :production {:misc "configuration"

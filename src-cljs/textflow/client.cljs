@@ -1,6 +1,7 @@
 (ns textflow.client
   (:use [jayq.core :only [$ delegate toggle val bind on attr css]])
-  (:require [textflow.logic :as tf]))
+  (:require [textflow.logic :as tf]
+            [textflow.utils :as utils]))
 
 
 
@@ -31,7 +32,13 @@
   (css $popview :display "none")
   (update-flow))
 
-(bind $selectbtn "click" #(.select $outtext))
+(defn path [] (.-location js/window))
+
+(bind $selectbtn "click"
+      #(do
+         (update-flow)
+         (val $outtext (str (val $outtext) (path) "/" (utils/uuid)))
+         (.select $outtext)))
 
 (val $intext tf/*example*)
 (bind $intext "input" update-flow-and-clear-popups)
