@@ -10,7 +10,7 @@
   (do
     (connect!)
     (set-db! (monger.core/get-db "test"))))
-
+ 
 (defn put [key text]
   "insert text into DB, return id"
   (mc/insert "documents" { :key key :intext text }))
