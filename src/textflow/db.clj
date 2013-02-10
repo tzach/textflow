@@ -6,7 +6,7 @@
 
 
 (defn init []
-  (if-let [conn-url (System/getenv "MONGOLAB_URI")]
+  (if-let [conn-url (get (System/getenv) "MONGOLAB_URI")]
     (connect-via-uri! conn-url)
     (do
       (connect!)
