@@ -5,11 +5,12 @@
            [com.mongodb DB WriteConcern]))
 
 
-(if-let [conn-url (System/getenv "MONGOLAB_URI")]
-  (connect-via-uri! conn-url)
-  (do
-    (connect!)
-    (set-db! (monger.core/get-db "test"))))
+(defn init []
+  (if-let [conn-url (System/getenv "MONGOLAB_URI")]
+    (connect-via-uri! conn-url)
+    (do
+      (connect!)
+      (set-db! (monger.core/get-db "test")))))
  
 (defn put [key text]
   "insert text into DB, return id"

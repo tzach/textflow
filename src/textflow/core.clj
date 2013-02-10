@@ -151,5 +151,6 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
   (ring-adpt/run-jetty #'app {:port port :join? false}))
 
 (defn -main ([port]
+               (db/init)
                (ring-adpt/run-jetty app {:port (Integer. port)}))
   ([] (-main 8080)))
