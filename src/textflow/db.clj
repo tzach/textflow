@@ -5,7 +5,7 @@
            [com.mongodb DB WriteConcern]))
 
 
-(if-let [conn-url (System/getenv "MONGOHQ_URL")]
+(if-let [conn-url (System/getenv "MONGOLAB_URI")]
   (connect-via-uri! conn-url)
   (do
     (connect!)
@@ -21,7 +21,3 @@
     (catch Exception e
       (prn (str key " not found"))
       nil)))
-
-
-;; (put "1fea999c0364d8e880c05157" "horray!")
-;; (get "1fea999c0364d8e880c05157")
