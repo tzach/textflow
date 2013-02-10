@@ -1,7 +1,9 @@
 (ns textflow.client
-  (:use [jayq.core :only [$ delegate toggle val bind on attr css]])
+  (:use [jayq.core :only [$ delegate toggle val bind on attr css ajax]])
   (:require [textflow.logic :as tf]
-            [textflow.utils :as utils]))
+            [textflow.utils :as utils]
+            [clojure.string :as str]
+            ))
 
 
 
@@ -12,6 +14,8 @@
 (def $popedit ($ :#popedit))
 (def $popview ($ :#popview))
 (def $selectbtn ($ :#selectbtn))
+
+(def ^:dynamic uuid-reg #"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
 
 (defn update-flow []
   (if-let [[text len rows] (tf/write-or-err (val $intext))]
@@ -27,20 +31,32 @@
       (css $validsyntax :display "none")
       (css $syntaxerror :display "block"))))
 
-(defn update-flow-and-clear-popups []
+(defn clear-popups []
   (css $popedit :display "none")
-  (css $popview :display "none")
-  (update-flow))
+  (css $popview :display "none"))
+  
+(defn path [] (str (.-location js/window)))
 
-(defn path [] (.-location js/window))
+(defn save-intext [sid]
+  (let [url sid]
+    (.log js/console (str "post:" url))
+    (ajax url {:contentType "text/plain" :async true :type "POST" :data (pr-str (val $intext))})
+    ))
 
 (bind $selectbtn "click"
       #(do
          (update-flow)
-         (val $outtext (str (val $outtext) (path) "/" (utils/uuid)))
+         (let [id (utils/uuid)
+               sid (str (str/replace (path) uuid-reg "") id)]
+           (save-intext sid)
+           (val $outtext (str (val $outtext) (reduce str (repeat 4 "\n")) sid)))
          (.select $outtext)))
 
-(val $intext tf/*example*)
-(bind $intext "input" update-flow-and-clear-popups)
-(update-flow)
+(if (empty? (val $intext))
+  (val $intext tf/*example*)
+  (clear-popups))
+  
 
+(bind $intext "input" #(do (update-flow)
+                           (clear-popups)))
+(update-flow)

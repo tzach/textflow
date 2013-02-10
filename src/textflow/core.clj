@@ -3,13 +3,18 @@
         hiccup.core
         hiccup.form
         hiccup.page
-        hiccup.element)
-  (:require [compojure.handler :as handler]
-            [ring.middleware.resource :as resources]
-            [compojure.route :as route]
-            [ring.util.response :as ring-res]
-            [ring.adapter.jetty :as ring-adpt]
-            ))
+        hiccup.element
+        ring.middleware.params
+        ring.middleware.keyword-params)
+  (:require
+   [textflow.db :as db]
+   [compojure.handler :as handler]
+   [ring.middleware.resource :as resources]
+   [compojure.route :as route]
+   [ring.util.response :as ring-res]
+   [ring.adapter.jetty :as ring-adpt]
+   [clojure.string :as str]
+   ))
 
 (def ^:dynamic *bootstrap-css* [:link { :href "stylesheets/bootstrap.css" :rel "stylesheet" :media "screen"}])
 (def ^:dynamic *my-css*  [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
@@ -75,7 +80,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
               [:li (source-link "Source")]
               ]]])
 
-(defn main-page []
+(defn main-page [input]
   (html5 {:lang "en"}
          [:head
           [:meta {:charset "utf-8"}]
@@ -93,7 +98,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
             [:h3 "a.k.a sequence diagrams"]]
            [:div.row-fluid
             [:div.span4
-             [:textarea {:type "text" :rows "12" :class "intext" :id "intext"}]
+             [:textarea {:type "text" :rows "12" :class "intext" :id "intext"} input]
              *popedit*
              *syntaxerror*
              *validsyntax*
@@ -114,15 +119,32 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
            ]]
          ))
 
-(defroutes app-routes
-  (GET "/" [] (main-page))
-  (route/not-found "Not Found"))
 
-;;(def app
-;;  (handler/site app-routes))
+(def ^:dynamic  *id-not-found* "[[id-not-found DB Client]]")
+
+(defn main-page-from-db [guid]
+  (main-page
+   (if-let [input (:intext (db/get guid))]
+     (read-string input)
+     *id-not-found*)))
+
+(defn post [guid body]
+  (db/put guid body)
+  (ring-res/response (str "stored. key: " guid ", val:" body)))
+  
+(def ^:dynamic uuid-reg #"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+
+(defroutes app-routes
+  (GET "/" [] (main-page nil))
+  (GET "/:guid" [guid]
+       (main-page-from-db guid))
+  (POST ["/:guid", :guid uuid-reg] [guid :as {body :body}]
+        (post guid (slurp body)))
+  (route/not-found "Not Found"))
 
 (def app 
   (-> app-routes
+      (wrap-params)
       (resources/wrap-resource "public")))
 
 (defn start [port]
@@ -131,5 +153,3 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 (defn -main ([port]
                (ring-adpt/run-jetty app {:port (Integer. port)}))
   ([] (-main 8080)))
-
-

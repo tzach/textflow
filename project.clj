@@ -6,9 +6,11 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [compojure "1.1.3" :exclusions [ring/ring-core]]
                  [hiccup "1.0.2"]
+                 [com.novemberain/monger "1.4.2"]
                  [ring/ring-devel "1.1.6"]
                  [ring/ring-jetty-adapter "1.1.0"]
-                 [jayq "2.0.0"]]
+                 [jayq "2.0.0"]
+                 [ring/ring-json "0.1.2"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-cljsbuild "0.2.10"]]
   :hooks [leiningen.cljsbuild]

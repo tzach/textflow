@@ -23810,6 +23810,7 @@ jayq.core.ajax_m = cljs.core.ObjMap.fromObject(["\ufdd0'return", "\ufdd0'bind", 
 goog.provide("textflow.client");
 goog.require("cljs.core");
 goog.require("jayq.core");
+goog.require("clojure.string");
 goog.require("textflow.utils");
 goog.require("textflow.logic");
 goog.require("jayq.core");
@@ -23820,6 +23821,7 @@ textflow.client.$validsyntax = jayq.core.$.call(null, "\ufdd0'#validsyntax");
 textflow.client.$popedit = jayq.core.$.call(null, "\ufdd0'#popedit");
 textflow.client.$popview = jayq.core.$.call(null, "\ufdd0'#popview");
 textflow.client.$selectbtn = jayq.core.$.call(null, "\ufdd0'#selectbtn");
+textflow.client.uuid_reg = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/;
 textflow.client.update_flow = function update_flow() {
   var temp__3971__auto__ = textflow.logic.write_or_err.call(null, jayq.core.val.call(null, textflow.client.$intext));
   if(cljs.core.truth_(temp__3971__auto__)) {
@@ -23839,19 +23841,33 @@ textflow.client.update_flow = function update_flow() {
     return jayq.core.css.call(null, textflow.client.$syntaxerror, "\ufdd0'display", "block")
   }
 };
-textflow.client.update_flow_and_clear_popups = function update_flow_and_clear_popups() {
+textflow.client.clear_popups = function clear_popups() {
   jayq.core.css.call(null, textflow.client.$popedit, "\ufdd0'display", "none");
-  jayq.core.css.call(null, textflow.client.$popview, "\ufdd0'display", "none");
-  return textflow.client.update_flow.call(null)
+  return jayq.core.css.call(null, textflow.client.$popview, "\ufdd0'display", "none")
 };
 textflow.client.path = function path() {
-  return window.location
+  return[cljs.core.str(window.location)].join("")
+};
+textflow.client.save_intext = function save_intext(sid) {
+  var url = sid;
+  console.log([cljs.core.str("post:"), cljs.core.str(url)].join(""));
+  return jayq.core.ajax.call(null, url, cljs.core.ObjMap.fromObject(["\ufdd0'contentType", "\ufdd0'async", "\ufdd0'type", "\ufdd0'data"], {"\ufdd0'contentType":"text/plain", "\ufdd0'async":true, "\ufdd0'type":"POST", "\ufdd0'data":cljs.core.pr_str.call(null, jayq.core.val.call(null, textflow.client.$intext))}))
 };
 jayq.core.bind.call(null, textflow.client.$selectbtn, "click", function() {
   textflow.client.update_flow.call(null);
-  jayq.core.val.call(null, textflow.client.$outtext, [cljs.core.str(jayq.core.val.call(null, textflow.client.$outtext)), cljs.core.str(textflow.client.path.call(null)), cljs.core.str("/"), cljs.core.str(textflow.utils.uuid.call(null))].join(""));
+  var id_2871 = textflow.utils.uuid.call(null);
+  var sid_2872 = [cljs.core.str(clojure.string.replace.call(null, textflow.client.path.call(null), textflow.client.uuid_reg, "")), cljs.core.str(id_2871)].join("");
+  textflow.client.save_intext.call(null, sid_2872);
+  jayq.core.val.call(null, textflow.client.$outtext, [cljs.core.str(jayq.core.val.call(null, textflow.client.$outtext)), cljs.core.str(cljs.core.reduce.call(null, cljs.core.str, cljs.core.repeat.call(null, 4, "\n"))), cljs.core.str(sid_2872)].join(""));
   return textflow.client.$outtext.select()
 });
-jayq.core.val.call(null, textflow.client.$intext, textflow.logic._STAR_example_STAR_);
-jayq.core.bind.call(null, textflow.client.$intext, "input", textflow.client.update_flow_and_clear_popups);
+if(cljs.core.empty_QMARK_.call(null, jayq.core.val.call(null, textflow.client.$intext))) {
+  jayq.core.val.call(null, textflow.client.$intext, textflow.logic._STAR_example_STAR_)
+}else {
+  textflow.client.clear_popups.call(null)
+}
+jayq.core.bind.call(null, textflow.client.$intext, "input", function() {
+  textflow.client.update_flow.call(null);
+  return textflow.client.clear_popups.call(null)
+});
 textflow.client.update_flow.call(null);
