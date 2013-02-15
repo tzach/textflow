@@ -5,11 +5,14 @@
         hiccup.page
         hiccup.element
         ring.middleware.params
-        ring.middleware.keyword-params)
+        ring.middleware.keyword-params
+        liberator.core
+        )
   (:require
    [textflow.db :as db]
    [compojure.handler :as handler]
    [ring.middleware.resource :as resources]
+   [ring.middleware.json :as jmw]
    [compojure.route :as route]
    [ring.util.response :as ring-res]
    [ring.adapter.jetty :as ring-adpt]
@@ -121,30 +124,45 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 
 
 (def ^:dynamic  *id-not-found* "[[id-not-found DB Client]]")
-
-(defn main-page-from-db [guid]
-  (main-page
-   (if-let [input (:intext (db/get guid))]
-     (read-string input)
-     *id-not-found*)))
-
-(defn post [guid body]
-  (db/put guid body)
-  (ring-res/response (str "stored. key: " guid ", val:" body)))
-  
 (def ^:dynamic uuid-reg #"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+
+;; CRUD 
+(defn get-document [id]
+  (ring-res/response
+   {:intext
+    (if-let [input (:intext (db/get-key id))]
+      input
+      *id-not-found*)
+    }))
+
+ 
+(defn update-document [id param]
+  (let [intext (param "intext")]
+    (db/put id intext)
+    (ring-res/response (pr-str "stored. key: " id ", val:" intext))))
+
+(defn delete-document [id]
+  "TBD"
+  )
+
+(def crud-context
+  (context "/:id" [id]
+           (defroutes api-routes
+             (GET    "/" [] (get-document id))
+             (PUT    "/" {form-params :form-params} (update-document id form-params))
+             (PUT "/" req (ring-res/response (pr-str req)))
+             (DELETE "/" [] (delete-document id)))))
 
 (defroutes app-routes
   (GET "/" [] (main-page nil))
-  (GET "/:guid" [guid]
-       (main-page-from-db guid))
-  (POST ["/:guid", :guid uuid-reg] [guid :as {body :body}]
-        (post guid (slurp body)))
+  crud-context
   (route/not-found "Not Found"))
 
 (def app 
   (-> app-routes
       (wrap-params)
+      (jmw/wrap-json-body {:keywords? true})
+      (jmw/wrap-json-response)
       (resources/wrap-resource "public")))
 
 (defn start [port]

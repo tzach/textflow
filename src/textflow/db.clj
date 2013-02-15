@@ -6,17 +6,20 @@
 
 
 (defn init []
-  (if-let [conn-url (get (System/getenv) "MONGOLAB_URI")]
-    (connect-via-uri! conn-url)
+  (if-let [conn-url (System/getenv "MONGOLAB_URI")]
     (do
+      (println "remote Mongo DB")
+      (connect-via-uri! conn-url))
+    (do
+      (println "local MongoDB")
       (connect!)
       (set-db! (monger.core/get-db "test")))))
  
 (defn put [key text]
-  "insert text into DB, return id"
+  "insert text into DB, return id. will not update if key already exist"
   (mc/insert "documents" { :key key :intext text }))
 
-(defn get [key]
+(defn get-key [key]
   (try
     (mc/find-one-as-map "documents" { :key key })
     (catch Exception e
