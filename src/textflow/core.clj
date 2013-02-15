@@ -98,7 +98,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
           [:div.container-fluid
            [:div.header 
             [:h2 "Online generation of RFC like call flows"]
-            [:h3 "a.k.a sequence diagrams"]]
+            [:h3 "(sequence diagrams)"]]
            [:div.row-fluid
             [:div.span4
              [:textarea {:type "text" :rows "12" :class "intext" :id "intext"} input]
@@ -115,11 +115,13 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
            [:div.row
             [:div.span10  *about*]]
            [:div.row
-            [:div.span10  *contact*]]
+            [:div.span10  *contact*]]]
+          [:footer
+            [:div.span2 "version 0.1.1"]]
            (include-js "js/jquery-1.8.2.min.js")
            (include-js "js/cljs.js")
            (include-js "js/bootstrap.min.js")
-           ]]
+           ]
          ))
 
 

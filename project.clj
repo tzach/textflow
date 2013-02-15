@@ -1,4 +1,4 @@
-(defproject textflow "0.1.0-SNAPSHOT"
+(defproject textflow "0.1.1"
   :description "Online generation of RFC like call flows"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -17,7 +17,7 @@
   :hooks [leiningen.cljsbuild]
   :cljsbuild { 
               :builds {
-                       :main {
+                       :dev {
                               :source-path "src-cljs"
                               :compiler
                               {
@@ -26,17 +26,17 @@
                                :pretty-print true
                                }
                               }
-                       ;; :prod {
-                       ;;        :source-path "src-cljs"
-                       ;;        :compiler
-                       ;;        {
-                       ;;         :output-to "resources/public/js/cljs.js"
-                       ;;         :optimizations :advanced
-                       ;;         :pretty-print false
-                       ;;         :externs ["resources/public/js/jquery-1.8.2.min.js"
-                       ;;                   "resources/public/js/bootstrap.min.js"]
-                       ;;         }
-                       ;;        }
+                       :production {
+                              :source-path "src-cljs"
+                              :compiler
+                              {
+                               :output-to "resources/public/js/cljs.js"
+                               :optimizations :advanced
+                               :pretty-print false
+                               :externs ["resources/public/js/jquery-1.8.2.min.js"
+                                         "resources/public/js/bootstrap.min.js"]
+                               }
+                              }
                        }
               }
   :production {:misc "configuration"
@@ -49,8 +49,9 @@
 ;; testing with midjet
 ;; https://github.com/marick/Midje
 
+;; usfull commands
 ;; lein trampoline cljsbuild repl-rhino
-;; lein cljsbuild once
+;; lein cljsbuild once main
 ;; curl --request POST -H "Content-Type: application/json" --upload-file ~/textflow/test/textflow/put.json http://127.0.0.1:8080/115
 ;; curl --request GET -H "Content-Type: application/json" http://127.0.0.1:8020/15
 ;; interactive

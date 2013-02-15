@@ -26,3 +26,14 @@ body {
 #buttons {
     margin-left: 10px;
 }
+
+footer {
+    color: #666;
+    background: #222;
+    padding: 17px 0 18px 0;
+    border-top: 1px solid #000;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:5px;   /* Height of the footer */
+}

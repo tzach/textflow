@@ -8,7 +8,7 @@ return setTimeout(func, ms);
 */
 jayq.util.log = (function() { 
 var log__delegate = function (v,text){
-var vs = ((cljs.core.string_QMARK_.call(null,v))?cljs.core.apply.call(null,cljs.core.str,v,text):v);
+var vs = ((cljs.core.string_QMARK_(v))?cljs.core.apply.cljs$lang$arity$3(cljs.core.str,v,text):v);
 return console.log(vs);
 };
 var log = function (v,var_args){
@@ -19,9 +19,9 @@ if (goog.isDef(var_args)) {
 return log__delegate.call(this, v, text);
 };
 log.cljs$lang$maxFixedArity = 1;
-log.cljs$lang$applyTo = (function (arglist__2894){
-var v = cljs.core.first(arglist__2894);
-var text = cljs.core.rest(arglist__2894);
+log.cljs$lang$applyTo = (function (arglist__3603){
+var v = cljs.core.first(arglist__3603);
+var text = cljs.core.rest(arglist__3603);
 return log__delegate(v, text);
 });
 log.cljs$lang$arity$variadic = log__delegate;

@@ -8,7 +8,6 @@ goog.require('textflow.utils');
 goog.require('textflow.logic');
 goog.require('jayq.util');
 goog.require('jayq.core');
-clojure.browser.repl.connect.call(null,"http://localhost:9000/repl");
 textflow.client.uuid_reg = /#[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/;
 textflow.client.$intext = jayq.core.$.call(null,"\uFDD0'#intext");
 textflow.client.$outtext = jayq.core.$.call(null,"\uFDD0'#outtext");
@@ -20,15 +19,15 @@ textflow.client.$selectbtn = jayq.core.$.call(null,"\uFDD0'#selectbtn");
 textflow.client.update_flow = (function update_flow(){
 var temp__3971__auto__ = textflow.logic.write_or_err.call(null,jayq.core.val.call(null,textflow.client.$intext));
 if(cljs.core.truth_(temp__3971__auto__))
-{var vec__6753 = temp__3971__auto__;
-var text = cljs.core.nth.call(null,vec__6753,0,null);
-var len = cljs.core.nth.call(null,vec__6753,1,null);
-var rows = cljs.core.nth.call(null,vec__6753,2,null);
+{var vec__2887 = temp__3971__auto__;
+var text = cljs.core.nth.call(null,vec__2887,0,null);
+var len = cljs.core.nth.call(null,vec__2887,1,null);
+var rows = cljs.core.nth.call(null,vec__2887,2,null);
 jayq.core.val.call(null,textflow.client.$outtext,text);
 jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'width",[cljs.core.str((15 + len)),cljs.core.str("ex")].join(''));
-var h_6754 = [cljs.core.str(cljs.core.int$.call(null,(3.5 * (3 + rows)))),cljs.core.str("ex")].join('');
-jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'height",h_6754);
-jayq.core.css.call(null,textflow.client.$intext,"\uFDD0'height",h_6754);
+var h_2888 = [cljs.core.str(cljs.core.int$.call(null,(3.5 * (3 + rows)))),cljs.core.str("ex")].join('');
+jayq.core.css.call(null,textflow.client.$outtext,"\uFDD0'height",h_2888);
+jayq.core.css.call(null,textflow.client.$intext,"\uFDD0'height",h_2888);
 jayq.core.css.call(null,textflow.client.$validsyntax,"\uFDD0'display","block");
 return jayq.core.css.call(null,textflow.client.$syntaxerror,"\uFDD0'display","none");
 } else
@@ -56,8 +55,8 @@ return jayq.core.ajax.call(null,post_uri,cljs.core.ObjMap.fromObject(["\uFDD0'as
 textflow.client.get_document = (function get_document(id){
 var get_uri = [cljs.core.str(textflow.client.site.call(null)),cljs.core.str(id)].join('');
 jayq.util.log.call(null,[cljs.core.str("get-document:"),cljs.core.str(get_uri)].join(''));
-return jayq.core.xhr.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'get",get_uri], true),cljs.core.ObjMap.EMPTY,(function (p1__6755_SHARP_){
-jayq.core.val.call(null,textflow.client.$intext,"intext".call(null,cljs.core.js__GT_clj.call(null,p1__6755_SHARP_)));
+return jayq.core.xhr.call(null,cljs.core.PersistentVector.fromArray(["\uFDD0'get",get_uri], true),cljs.core.ObjMap.EMPTY,(function (p1__2889_SHARP_){
+jayq.core.val.call(null,textflow.client.$intext,"intext".call(null,cljs.core.js__GT_clj.call(null,p1__2889_SHARP_)));
 return textflow.client.update_flow.call(null);
 }));
 });
@@ -95,12 +94,12 @@ return cljs.core._EQ_.call(null,h,cljs.core.subs.call(null,cljs.core.apply.call(
 {return null;
 }
 }));
-var h_6756 = textflow.client.get_win_hash.call(null);
-if(cljs.core.empty_QMARK_.call(null,h_6756))
+var h_2890 = textflow.client.get_win_hash.call(null);
+if(cljs.core.empty_QMARK_.call(null,h_2890))
 {jayq.util.log.call(null,"lets start with an example");
 jayq.core.val.call(null,textflow.client.$intext,textflow.logic._STAR_example_STAR_);
 textflow.client.update_flow.call(null);
 } else
-{textflow.client.get_document.call(null,h_6756);
+{textflow.client.get_document.call(null,h_2890);
 textflow.client.clear_popups.call(null);
 }

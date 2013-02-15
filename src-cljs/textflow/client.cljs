@@ -8,11 +8,10 @@
             ))
 
 ;; run REPL
-(repl/connect "http://localhost:9000/repl")
-
+;;(repl/connect "http://localhost:9000/repl")
+  
 ;; utils
 (def ^:dynamic uuid-reg #"#[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
-
 
 ;; bind to DOM
 (def $intext ($ :#intext))
