@@ -1,4 +1,4 @@
-(defproject textflow "0.1.1"
+(defproject textflow "0.1.2"
   :description "Online generation of RFC like call flows"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -31,7 +31,7 @@
                               :compiler
                               {
                                :output-to "resources/public/js/cljs.js"
-                               :optimizations :advanced
+                               :optimizations :simple
                                :pretty-print false
                                :externs ["resources/public/js/jquery-1.8.2.min.js"
                                          "resources/public/js/bootstrap.min.js"]
@@ -51,7 +51,7 @@
 
 ;; usfull commands
 ;; lein trampoline cljsbuild repl-rhino
-;; lein cljsbuild once main
+;; lein cljsbuild once dev
 ;; curl --request POST -H "Content-Type: application/json" --upload-file ~/textflow/test/textflow/put.json http://127.0.0.1:8080/115
 ;; curl --request GET -H "Content-Type: application/json" http://127.0.0.1:8020/15
 ;; interactive

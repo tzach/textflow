@@ -8,6 +8,7 @@ goog.require('textflow.utils');
 goog.require('textflow.logic');
 goog.require('jayq.util');
 goog.require('jayq.core');
+clojure.browser.repl.connect.call(null,"http://localhost:9000/repl");
 textflow.client.uuid_reg = /#[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/;
 textflow.client.$intext = jayq.core.$.call(null,"\uFDD0'#intext");
 textflow.client.$outtext = jayq.core.$.call(null,"\uFDD0'#outtext");

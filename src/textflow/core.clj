@@ -49,10 +49,10 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
     ]])
   
 (def ^:dynamic *popedit*
-  (popup "popedit" "popover fade right in" [210 225] "Edit"  "Write Text here"))
+  (popup "popedit" "popover fade right in" [150 225] "1. Edit"  "Write Text here"))
 
 (def ^:dynamic  *popview*
-  (popup "popview" "popover fade left in" [325 375] "View" "View Call Flow here"))
+  (popup "popview" "popover fade left in" [210 375] "2. View" "View Call Flow here"))
   
 (defn syntax [id class text]
   [:div.row {:id id} [:div.span8 [:div {:class class}
@@ -115,13 +115,14 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
            [:div.row
             [:div.span10  *about*]]
            [:div.row
-            [:div.span10  *contact*]]]
+            [:div.span10  *contact*]]
+           ]
           [:footer
-            [:div.span2 "version 0.1.1"]]
+            [:div.span2 "version 0.1.2"]]
            (include-js "js/jquery-1.8.2.min.js")
            (include-js "js/cljs.js")
            (include-js "js/bootstrap.min.js")
-           ]
+          ]
          ))
 
 

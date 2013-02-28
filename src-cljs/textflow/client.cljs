@@ -1,6 +1,7 @@
 (ns textflow.client
   (:use [jayq.core :only [$ delegate toggle val bind on attr css ajax xhr]]
-        [jayq.util :only [log]])
+        [jayq.util :only [log]
+         ])
   (:require [textflow.logic :as tf]
             [textflow.utils :as utils]
             [clojure.string :as str]
@@ -12,6 +13,11 @@
   
 ;; utils
 (def ^:dynamic uuid-reg #"#[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+
+(defn my-log [v & text]
+  "bypass to IE8 issue"
+  (try (log v text)
+       (catch js/Object e)))
 
 ;; bind to DOM
 (def $intext ($ :#intext))
@@ -63,7 +69,7 @@
 
 (defn get-document [id]
   (let [get-uri (str (site)  id)]
-    (log (str "get-document:" get-uri))
+    (my-log (str "get-document:" get-uri))
     (xhr [:get get-uri] {}
          #(do (->> %
                    js->clj
@@ -95,7 +101,7 @@
 (bind ($ js/window) "hashchange"
       #(let [h (get-win-hash)]
          (do
-           (log "hashchange changed to: " h)
+           (my-log "hashchange changed to: " h)
            (when (seq h)
              (when-not
                  (when-let [rf (seq (re-find #"/#.*$" (val $outtext)))]
@@ -107,7 +113,7 @@
 (let [h (get-win-hash)]
   (if (empty? h)
     (do
-      (log "lets start with an example")
+      (my-log "lets start with an example")
       (val $intext tf/*example*)
       (update-flow))
     (do (get-document h)
