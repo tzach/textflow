@@ -23,7 +23,7 @@ if(or__3824__auto__)
 if(or__3824__auto____$1)
 {return or__3824__auto____$1;
 } else
-{throw cljs.core.missing_protocol("EventType.event-types",this$);
+{throw cljs.core.missing_protocol.call(null,"EventType.event-types",this$);
 }
 }
 })().call(null,this$);
@@ -31,29 +31,29 @@ if(or__3824__auto____$1)
 });
 Element.prototype.clojure$browser$event$EventType$ = true;
 Element.prototype.clojure$browser$event$EventType$event_types$arity$1 = (function (this$){
-return cljs.core.into(cljs.core.ObjMap.EMPTY,cljs.core.map.cljs$lang$arity$2((function (p__3599){
-var vec__3600 = p__3599;
-var k = cljs.core.nth.cljs$lang$arity$3(vec__3600,0,null);
-var v = cljs.core.nth.cljs$lang$arity$3(vec__3600,1,null);
-return cljs.core.PersistentVector.fromArray([cljs.core.keyword.cljs$lang$arity$1(k.toLowerCase()),v], true);
-}),cljs.core.merge.cljs$lang$arity$variadic(cljs.core.array_seq([cljs.core.js__GT_clj(goog.events.EventType)], 0))));
+return cljs.core.into.call(null,cljs.core.ObjMap.EMPTY,cljs.core.map.call(null,(function (p__3600){
+var vec__3601 = p__3600;
+var k = cljs.core.nth.call(null,vec__3601,0,null);
+var v = cljs.core.nth.call(null,vec__3601,1,null);
+return cljs.core.PersistentVector.fromArray([cljs.core.keyword.call(null,k.toLowerCase()),v], true);
+}),cljs.core.merge.call(null,cljs.core.js__GT_clj.call(null,goog.events.EventType))));
 });
 goog.events.EventTarget.prototype.clojure$browser$event$EventType$ = true;
 goog.events.EventTarget.prototype.clojure$browser$event$EventType$event_types$arity$1 = (function (this$){
-return cljs.core.into(cljs.core.ObjMap.EMPTY,cljs.core.map.cljs$lang$arity$2((function (p__3601){
-var vec__3602 = p__3601;
-var k = cljs.core.nth.cljs$lang$arity$3(vec__3602,0,null);
-var v = cljs.core.nth.cljs$lang$arity$3(vec__3602,1,null);
-return cljs.core.PersistentVector.fromArray([cljs.core.keyword.cljs$lang$arity$1(k.toLowerCase()),v], true);
-}),cljs.core.merge.cljs$lang$arity$variadic(cljs.core.array_seq([cljs.core.js__GT_clj(goog.events.EventType)], 0))));
+return cljs.core.into.call(null,cljs.core.ObjMap.EMPTY,cljs.core.map.call(null,(function (p__3602){
+var vec__3603 = p__3602;
+var k = cljs.core.nth.call(null,vec__3603,0,null);
+var v = cljs.core.nth.call(null,vec__3603,1,null);
+return cljs.core.PersistentVector.fromArray([cljs.core.keyword.call(null,k.toLowerCase()),v], true);
+}),cljs.core.merge.call(null,cljs.core.js__GT_clj.call(null,goog.events.EventType))));
 });
 clojure.browser.event.listen = (function() {
 var listen = null;
 var listen__3 = (function (src,type,fn){
-return listen.cljs$lang$arity$4(src,type,fn,false);
+return listen.call(null,src,type,fn,false);
 });
 var listen__4 = (function (src,type,fn,capture_QMARK_){
-return goog.events.listen(src,cljs.core._lookup.cljs$lang$arity$3(clojure.browser.event.event_types(src),type,type),fn,capture_QMARK_);
+return goog.events.listen(src,cljs.core._lookup.call(null,clojure.browser.event.event_types.call(null,src),type,type),fn,capture_QMARK_);
 });
 listen = function(src,type,fn,capture_QMARK_){
 switch(arguments.length){
@@ -72,10 +72,10 @@ return listen;
 clojure.browser.event.listen_once = (function() {
 var listen_once = null;
 var listen_once__3 = (function (src,type,fn){
-return listen_once.cljs$lang$arity$4(src,type,fn,false);
+return listen_once.call(null,src,type,fn,false);
 });
 var listen_once__4 = (function (src,type,fn,capture_QMARK_){
-return goog.events.listenOnce(src,cljs.core._lookup.cljs$lang$arity$3(clojure.browser.event.event_types(src),type,type),fn,capture_QMARK_);
+return goog.events.listenOnce(src,cljs.core._lookup.call(null,clojure.browser.event.event_types.call(null,src),type,type),fn,capture_QMARK_);
 });
 listen_once = function(src,type,fn,capture_QMARK_){
 switch(arguments.length){
@@ -94,10 +94,10 @@ return listen_once;
 clojure.browser.event.unlisten = (function() {
 var unlisten = null;
 var unlisten__3 = (function (src,type,fn){
-return unlisten.cljs$lang$arity$4(src,type,fn,false);
+return unlisten.call(null,src,type,fn,false);
 });
 var unlisten__4 = (function (src,type,fn,capture_QMARK_){
-return goog.events.unlisten(src,cljs.core._lookup.cljs$lang$arity$3(clojure.browser.event.event_types(src),type,type),fn,capture_QMARK_);
+return goog.events.unlisten(src,cljs.core._lookup.call(null,clojure.browser.event.event_types.call(null,src),type,type),fn,capture_QMARK_);
 });
 unlisten = function(src,type,fn,capture_QMARK_){
 switch(arguments.length){
