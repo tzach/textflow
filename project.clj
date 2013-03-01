@@ -1,4 +1,4 @@
-(defproject textflow "0.1.2"
+(defproject textflow "0.1.3"
   :description "Online generation of RFC like call flows"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -11,7 +11,8 @@
                  [ring/ring-jetty-adapter "1.1.0"]
                  [jayq "2.0.0"]
                  [ring/ring-json "0.1.2"]
-                 [liberator "0.8.0"]]
+                 [liberator "0.8.0"]
+                 [org.clojure/tools.reader "0.7.0"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-cljsbuild "0.2.10"]]
   :hooks [leiningen.cljsbuild]

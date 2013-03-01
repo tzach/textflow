@@ -40,8 +40,8 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
   (doc-section "contact" "Contact" "Create by Tzach Livyatan. You can contact me via the project " (source-link "Github")))
 
 
-(defn popup [id class [x y] h text]
-  [:div {:id id :class class :style (str "top: " x "px; left: " y "px; display: block;")}
+(defn popup [id class h text]
+  [:div {:id id :class class}
    [:div.arrow]
    [:div.popover-inner
     [:h3.popover-title h]
@@ -49,10 +49,10 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
     ]])
   
 (def ^:dynamic *popedit*
-  (popup "popedit" "popover fade right in" [150 225] "1. Edit"  "Write Text here"))
+  (popup "popedit" "popover fade right in"  "1. Edit"  "Write Text here"))
 
 (def ^:dynamic  *popview*
-  (popup "popview" "popover fade left in" [210 375] "2. View" "View Call Flow here"))
+  (popup "popview" "popover fade left in" "2. View" "View Call Flow here"))
   
 (defn syntax [id class text]
   [:div.row {:id id} [:div.span8 [:div {:class class}
@@ -95,18 +95,18 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
           *my-css*]
          [:body
           *menu*
-          [:div.container-fluid
+          [:div#container.container-fluid
            [:div.header 
             [:h2 "Online generation of RFC like call flows"]
             [:h3 "(sequence diagrams)"]]
            [:div.row-fluid
-            [:div.span4
+            [:div#intextdiv.span4 
              [:textarea {:type "text" :rows "12" :class "intext" :id "intext"} input]
              *popedit*
              *syntaxerror*
              *validsyntax*
              ]
-            [:div.span8
+            [:div#outtextdiv.span8
              [:textarea {:type "text" :class "outtext" :id "outtext" :readonly "true"}]
              *popview*
              *buttons*
@@ -118,7 +118,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
             [:div.span10  *contact*]]
            ]
           [:footer
-            [:div.span2 "version 0.1.2"]]
+           [:div.span2 "version 0.1.3"]]
            (include-js "js/jquery-1.8.2.min.js")
            (include-js "js/cljs.js")
            (include-js "js/bootstrap.min.js")
