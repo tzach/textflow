@@ -22,7 +22,7 @@
                 :compiler
                 {:pretty-print true,
                  :output-to "resources/public/js/cljs.js",
-                 :optimizations :whitespace}}
+                 :optimizations :whitespacey}}
                {:source-paths ["src-cljs"],
                 :id "production",
                 :compiler
@@ -31,7 +31,7 @@
                  :externs
                  ["resources/public/js/jquery-1.8.2.min.js"
                   "resources/public/js/bootstrap.min.js"],
-                 :optimizations :whitespace}}]
+                 :optimizations :simple}}]
               }
   :production {:misc "configuration"
                :offline true
