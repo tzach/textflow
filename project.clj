@@ -1,44 +1,37 @@
-(defproject textflow "0.1.3"
+(defproject textflow "0.1.4"
   :description "Online generation of RFC like call flows"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.4.0"]
-                 [compojure "1.1.3" :exclusions [ring/ring-core]]
-                 [hiccup "1.0.2"]
-                 [com.novemberain/monger "1.4.2"]
-                 [ring/ring-devel "1.1.6"]
-                 [ring/ring-jetty-adapter "1.1.0"]
-                 [jayq "2.0.0"]
-                 [ring/ring-json "0.1.2"]
-                 [liberator "0.8.0"]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [compojure "1.1.5" :exclusions [ring/ring-core]]
+                 [hiccup "1.0.3"]
+                 [com.novemberain/monger "1.5.0"]
+                 [ring/ring-devel "1.1.8"]
+                 [ring/ring-jetty-adapter "1.1.8"]
+                 [ring/ring-json "0.2.0"]
+                 [jayq "2.3.0"]
+;;                 [liberator "0.8.0"]
                  [org.clojure/tools.reader "0.7.0"]]
   :min-lein-version "2.0.0"
-  :plugins [[lein-cljsbuild "0.2.10"]]
-  :hooks [leiningen.cljsbuild]
-  :cljsbuild { 
-              :builds {
-                       :dev {
-                              :source-path "src-cljs"
-                              :compiler
-                              {
-                               :output-to "resources/public/js/cljs.js"
-                               :optimizations :whitespace
-                               :pretty-print true
-                               }
-                              }
-                       :production {
-                              :source-path "src-cljs"
-                              :compiler
-                              {
-                               :output-to "resources/public/js/cljs.js"
-                               :optimizations :simple
-                               :pretty-print false
-                               :externs ["resources/public/js/jquery-1.8.2.min.js"
-                                         "resources/public/js/bootstrap.min.js"]
-                               }
-                              }
-                       }
+  :plugins [[lein-cljsbuild "0.3.0"]]
+;;  :hooks [leiningen.cljsbuild]
+  :cljsbuild {:builds
+              [{:source-paths ["src-cljs"],
+                :id "dev",
+                :compiler
+                {:pretty-print true,
+                 :output-to "resources/public/js/cljs.js",
+                 :optimizations :whitespace}}
+               {:source-paths ["src-cljs"],
+                :id "production",
+                :compiler
+                {:pretty-print false,
+                 :output-to "resources/public/js/cljs.js",
+                 :externs
+                 ["resources/public/js/jquery-1.8.2.min.js"
+                  "resources/public/js/bootstrap.min.js"],
+                 :optimizations :whitespace}}]
               }
   :production {:misc "configuration"
                :offline true
