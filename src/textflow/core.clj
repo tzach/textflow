@@ -119,7 +119,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
             [:div.span10  *contact*]]
            ]
           [:footer
-           [:div.span2 "version 0.1.4"]]
+           [:div.span2 "version 0.1.5"]]
            (include-js "js/jquery-1.8.2.min.js")
            (include-js "js/cljs.js")
            (include-js "js/bootstrap.min.js")

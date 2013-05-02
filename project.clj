@@ -1,4 +1,4 @@
-(defproject textflow "0.1.4"
+(defproject textflow "0.1.5"
   :description "Online generation of RFC like call flows"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
