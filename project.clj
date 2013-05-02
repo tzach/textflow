@@ -22,7 +22,7 @@
                 :compiler
                 {:pretty-print true,
                  :output-to "resources/public/js/cljs.js",
-                 :optimizations :whitespacey}}
+                 :optimizations :whitespace}}
                {:source-paths ["src-cljs"],
                 :id "production",
                 :compiler
@@ -37,21 +37,22 @@
                :offline true
                :mirrors {#"central|clojars"
                          "http://s3pository.herokuapp.com/clojure"}}
-  :main textflow.server)
+  :main textflow.server
 
-;; todo
-;; testing with midjet
-;; https://github.com/marick/Midje
+  ;; todo
+  ;; testing with midjet
+  ;; https://github.com/marick/Midje
 
-;; usfull commands
-;; lein trampoline cljsbuild repl-rhino
-;; lein cljsbuild once dev
-;; curl --request POST -H "Content-Type: application/json" --upload-file ~/textflow/test/textflow/put.json http://127.0.0.1:8080/115
-;; curl --request GET -H "Content-Type: application/json" http://127.0.0.1:8020/15
-;; interactive
-;; lein trampoline cljsbuild repl-listen
+  ;; usfull commands
+  ;; lein trampoline cljsbuild repl-rhino
+  ;; lein cljsbuild once dev
+  ;; curl --request POST -H "Content-Type: application/json" --upload-file ~/textflow/test/textflow/put.json http://127.0.0.1:8080/115
+  ;; curl --request GET -H "Content-Type: application/json" http://127.0.0.1:8020/15
+  ;; interactive
+  ;; lein trampoline cljsbuild repl-listen
 
 
-;; compile results
-;; 901034 Apr 15 16:31 cljs.js :optimizations :whitespace
-;; 645821 Apr 15 21:06 cljs.js :optimizations :simple
+  ;; compile results
+  ;; 901034 Apr 15 16:31 cljs.js :optimizations :whitespace
+  ;; 645821 Apr 15 21:06 cljs.js :optimizations :simple
+)
