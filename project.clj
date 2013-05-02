@@ -11,7 +11,7 @@
                  [ring/ring-jetty-adapter "1.1.8"]
                  [ring/ring-json "0.2.0"]
                  [jayq "2.3.0"]
-;;                 [liberator "0.8.0"]
+                 [com.newrelic.agent.java/newrelic-api "2.17.2"]
                  [org.clojure/tools.reader "0.7.0"]]
   :min-lein-version "2.0.0"
   :plugins [[lein-cljsbuild "0.3.0"]]
@@ -50,3 +50,8 @@
 ;; curl --request GET -H "Content-Type: application/json" http://127.0.0.1:8020/15
 ;; interactive
 ;; lein trampoline cljsbuild repl-listen
+
+
+;; compile results
+;; 901034 Apr 15 16:31 cljs.js :optimizations :whitespace
+;; 645821 Apr 15 21:06 cljs.js :optimizations :simple

@@ -6,7 +6,6 @@
         hiccup.element
         ring.middleware.params
         ring.middleware.keyword-params
-;;         liberator.core
         )
   (:require
    [textflow.db :as db]
@@ -17,7 +16,9 @@
    [ring.util.response :as ring-res]
    [ring.adapter.jetty :as ring-adpt]
    [clojure.string :as str]
-   ))
+   )
+  (:import com.newrelic.api.agent.Trace))
+
 
 (def ^:dynamic *bootstrap-css* [:link { :href "stylesheets/bootstrap.css" :rel "stylesheet" :media "screen"}])
 (def ^:dynamic *my-css*  [:link {:type "text/css" :rel "stylesheet" :href "stylesheets/main.css"}])
@@ -130,7 +131,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 (def ^:dynamic uuid-reg #"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
 
 ;; CRUD 
-(defn get-document [id]
+(defn- get-document* [id]
   (ring-res/response
    {:intext
     (if-let [input (:intext (db/get-key id))]
@@ -139,7 +140,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
     }))
 
  
-(defn update-document [id param]
+(defn- update-document* [id param]
   (let [intext (param "intext")]
     (db/put id intext)
     (ring-res/response (pr-str "stored. key: " id ", val:" intext))))
@@ -148,6 +149,26 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
   "TBD"
   )
 
+;; New Reclic related code from http://corfield.org/blog/post.cfm/instrumenting-clojure-for-new-relic-monitoring
+
+(definterface INR
+  (get_document [id])
+  (update_document [id param]))
+
+(deftype NR []
+  INR
+  ;; @Trace maps to Trace {} metadata:
+  (^{Trace {}} get_document  [_ id] (get-document* id))
+  (^{Trace {}} update_document [_ id param]   (update-document* id param)))
+
+(def ^:private nr (NR.))
+
+(defn get-document [id] (.get_document nr id))
+(defn update-document [id param] (.update_document nr id param))
+;;
+
+
+;; routing
 (def crud-context
   (context "/:id" [id]
            (defroutes api-routes
