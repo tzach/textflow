@@ -150,7 +150,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
   )
 
 ;; New Reclic related code from http://corfield.org/blog/post.cfm/instrumenting-clojure-for-new-relic-monitoring
-
+ 
 (definterface INR
   (get_document [id])
   (update_document [id param]))
