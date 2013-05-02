@@ -1,1 +1,1 @@
-web: lein with-profile production trampoline run -m textflow.core $PORT
+web: lein with-profile production trampoline run $JAVA_OPTS -m textflow.core $PORT 
