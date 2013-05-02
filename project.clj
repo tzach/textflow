@@ -38,7 +38,10 @@
                :mirrors {#"central|clojars"
                          "http://s3pository.herokuapp.com/clojure"}}
   :main textflow.server
+  :java-opts ["-Xmx384m -Xss512k -XX:+UseCompressedOops -javaagent:newrelic/newrelic.jar"]
+  )
 
+ 
   ;; todo
   ;; testing with midjet
   ;; https://github.com/marick/Midje
@@ -55,4 +58,3 @@
   ;; compile results
   ;; 901034 Apr 15 16:31 cljs.js :optimizations :whitespace
   ;; 645821 Apr 15 21:06 cljs.js :optimizations :simple
-)
