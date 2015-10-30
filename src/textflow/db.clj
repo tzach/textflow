@@ -1,5 +1,5 @@
 (ns textflow.db
-  (:use [monger.core :only [connect connect-via-uri]])
+  (:use [monger.core :only [use-db! connect connect-via-uri]])
   (:require [monger.collection :as mc])
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
