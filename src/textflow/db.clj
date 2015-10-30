@@ -1,5 +1,5 @@
 (ns textflow.db
-  (:use [monger.core :only [use-db! connect connect-via-uri]])
+  (:use [monger.core :only [get-db connect connect-via-uri]])
   (:require [monger.collection :as mc])
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
@@ -12,8 +12,7 @@
       (connect-via-uri conn-url))
     (do
       (println "local MongoDB")
-      (connect)
-      (use-db! "test"))))
+      (get-db (connect) "test"))))
  
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
