@@ -1,5 +1,5 @@
 (ns textflow.db
-  (:use [monger.core :only [connect! connect set-db! get-db connect-via-uri!]])
+  (:use [monger.core :only [connect connect-via-uri]])
   (:require [monger.collection :as mc])
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
@@ -9,11 +9,11 @@
   (if-let [conn-url (System/getenv "MONGOLAB_URI")]
     (do
       (println "remote Mongo DB")
-      (connect-via-uri! conn-url))
+      (connect-via-uri conn-url))
     (do
       (println "local MongoDB")
-      (connect!)
-      (set-db! (monger.core/get-db "test")))))
+      (connect)
+      (use-db! "test"))))
  
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
