@@ -17,6 +17,7 @@
  
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
+  (println @db)
   (mc/insert @db "documents" { :key key :intext text }))
 
 (defn get-key [key]
