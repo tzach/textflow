@@ -17,11 +17,11 @@
  
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
-  (mc/insert db "documents" { :key key :intext text }))
+  (mc/insert @db "documents" { :key key :intext text }))
 
 (defn get-key [key]
   (try
-    (mc/find-one-as-map db "documents" { :key key })
+    (mc/find-one-as-map @db "documents" { :key key })
     (catch Exception e
       (prn (str key " not found"))
       nil)))
