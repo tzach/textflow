@@ -8,6 +8,17 @@ Implemented using Clojure, Clojurescript and Bootstrap.
 See it in action
 http://textflow.herokuapp.com/
 
+## Test Locally
+* run MongoDB server
+```
+sudo docker run -p 27017:27017 mongo:3.0.7
+```
+
+* Run server locally
+```
+heroku local
+```
+
 ## License
 
 Copyright © 2013 Tzach Livyatan

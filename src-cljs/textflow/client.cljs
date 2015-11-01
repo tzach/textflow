@@ -30,6 +30,7 @@
 
 
 (defn update-flow []
+  (my-log "update-flow")
   (if-let [[text len rows] (tf/write-or-err (val $intext))]
     (do
       (val $outtext text)
@@ -71,10 +72,7 @@
   (let [get-uri (str (site)  id)]
     (my-log (str "get-document:" get-uri))
     (xhr [:get get-uri] {}
-         #(do (->> %
-                   js->clj
-                   ("intext")
-                   (val $intext))
+         #(do (val $intext %)
               (update-flow)
               ))))
 
