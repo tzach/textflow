@@ -9,12 +9,12 @@
 (defn init []
   (if-let [conn-url (System/getenv "MONGOLAB_URI")]
     (do
-      (println "remote Mongo DB")
-      (reset! db (connect-via-uri conn-url)))
+      (println "remote Mongo DB: " conn-url)
+      (reset! db (:db (connect-via-uri conn-url))))
     (do
       (println "local MongoDB")
       (reset! db (get-db (connect) "test")))))
- 
+
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
   (mc/insert @db "documents" { :key key :intext text }))
