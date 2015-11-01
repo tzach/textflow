@@ -91,6 +91,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
           [:viewport { :content "width=device-width" :initial-scale "1.0"} ]
           [:description *description*]
           [:meta {:name "Tzach Livyatan"} ]
+          [:link {:rel="icon" :href "data:;base64,iVBORw0KGgo=" }]
           *bootstrap-css*
           *my-css*]
          [:body
@@ -129,16 +130,15 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 (def ^:dynamic  *id-not-found* "[[id-not-found DB Client]]")
 (def ^:dynamic uuid-reg #"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
 
-;; CRUD 
+;; CRUD
 (defn- get-document [id]
   (ring-res/response
-   {:intext
     (if-let [input (:intext (db/get-key id))]
       input
       *id-not-found*)
-    }))
+    ))
 
- 
+
 (defn- update-document [id param]
   (let [intext (param "intext")]
     (db/put id intext)
@@ -150,7 +150,7 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
 
 ;; routing
 (def crud-context
-  (context "/:id" [id]
+  (context ["/:id" :id uuid-reg] [id]
            (defroutes api-routes
              (GET    "/" [] (get-document id))
              (PUT    "/" {form-params :form-params} (update-document id form-params))
@@ -158,8 +158,8 @@ like call flows (sequence diagrams) on the fly, much like call flows in RFCs")
              (DELETE "/" [] (delete-document id)))))
 
 (defroutes app-routes
-  (GET "/" [] (main-page nil))
   crud-context
+  (GET "/" [] (main-page nil))
   (route/not-found "Not Found"))
 
 (def app 

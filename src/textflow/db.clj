@@ -4,23 +4,24 @@
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
 
+(def db (atom nil))
 
 (defn init []
   (if-let [conn-url (System/getenv "MONGOLAB_URI")]
     (do
       (println "remote Mongo DB")
-      (connect-via-uri conn-url))
+      (reset! db (connect-via-uri conn-url)))
     (do
       (println "local MongoDB")
-      (get-db (connect) "test"))))
+      (reset! db (get-db (connect) "test")))))
  
 (defn put [key text]
   "insert text into DB, return id. will not update if key already exist"
-  (mc/insert "documents" { :key key :intext text }))
+  (mc/insert @db "documents" { :key key :intext text }))
 
 (defn get-key [key]
   (try
-    (mc/find-one-as-map "documents" { :key key })
+    (mc/find-one-as-map @db "documents" { :key (str key) })
     (catch Exception e
       (prn (str key " not found"))
       nil)))

@@ -40790,6 +40790,7 @@ textflow.client.$popedit = jayq.core.$.call(null, new cljs.core.Keyword(null, "#
 textflow.client.$popview = jayq.core.$.call(null, new cljs.core.Keyword(null, "#popview", "#popview", 1695194613));
 textflow.client.$selectbtn = jayq.core.$.call(null, new cljs.core.Keyword(null, "#selectbtn", "#selectbtn", 55503193));
 textflow.client.update_flow = function update_flow() {
+  textflow.client.my_log.call(null, "update-flow");
   var temp__4124__auto__ = textflow.logic.write_or_err.call(null, jayq.core.val.call(null, textflow.client.$intext));
   if (cljs.core.truth_(temp__4124__auto__)) {
     var vec__5347 = temp__4124__auto__;
@@ -40830,7 +40831,7 @@ textflow.client.get_document = function get_document(id) {
   textflow.client.my_log.call(null, [cljs.core.str("get-document:"), cljs.core.str(get_uri)].join(""));
   return jayq.core.xhr.call(null, new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "get", "get", 1683182755), get_uri], null), cljs.core.PersistentArrayMap.EMPTY, function(get_uri) {
     return function(p1__5349_SHARP_) {
-      jayq.core.val.call(null, textflow.client.$intext, "intext".call(null, cljs.core.js__GT_clj.call(null, p1__5349_SHARP_)));
+      jayq.core.val.call(null, textflow.client.$intext, p1__5349_SHARP_);
       return textflow.client.update_flow.call(null);
     };
   }(get_uri));
