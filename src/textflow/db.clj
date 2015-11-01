@@ -9,7 +9,7 @@
 (defn init []
   (if-let [conn-url (System/getenv "MONGOLAB_URI")]
     (do
-      (println "remote Mongo DB")
+      (println "remote Mongo DB: " conn-url)
       (reset! db (connect-via-uri conn-url)))
     (do
       (println "local MongoDB")
